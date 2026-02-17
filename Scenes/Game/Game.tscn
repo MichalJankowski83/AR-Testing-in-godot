@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bb456h2cytmqi"]
+
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="1_rdw05"]
+[ext_resource type="PackedScene" uid="uid://beu6iytgfi0u8" path="res://Scenes/Room/Room.tscn" id="2_xbxml"]
+[ext_resource type="PackedScene" uid="uid://dchganarq1xvn" path="res://Scenes/Player/Player.tscn" id="3_ln2h6"]
+[ext_resource type="PackedScene" uid="uid://5cg4ik640hr2" path="res://Scenes/Table/Table.tscn" id="4_y3kpf"]
+[ext_resource type="PackedScene" uid="uid://bxu3lrntwy2gm" path="res://Scenes/Can/Can.tscn" id="5_3k6gv"]
+[ext_resource type="PackedScene" uid="uid://bvu2ws6wwyyva" path="res://Scenes/Detector/Detector.tscn" id="6_3k6gv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rdw05"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_gwu2e"]
+sky_material = SubResource("ProceduralSkyMaterial_rdw05")
+
+[sub_resource type="Environment" id="Environment_xbxml"]
+background_mode = 2
+sky = SubResource("Sky_gwu2e")
+tonemap_mode = 2
+
+[node name="Game" type="Node3D" unique_id=1808072306]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1133456213]
+environment = SubResource("Environment_xbxml")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1970185660]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="StartXR" parent="." unique_id=891456040 instance=ExtResource("1_rdw05")]
+
+[node name="Room" parent="." unique_id=1770761843 instance=ExtResource("2_xbxml")]
+
+[node name="Player" parent="." unique_id=1068197158 instance=ExtResource("3_ln2h6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6138365, 0)
+
+[node name="Table" parent="." unique_id=720204479 instance=ExtResource("4_y3kpf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6146657, 0, -7.979684)
+
+[node name="Can" parent="Table" unique_id=1855813449 instance=ExtResource("5_3k6gv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98982024, 0)
+
+[node name="ARToggle" parent="." unique_id=300391857 instance=ExtResource("6_3k6gv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3871498, 1.0507405, -7.876005)
+
+[connection signal="toggled" from="ARToggle" to="StartXR" method="_on_detector_toggled"]

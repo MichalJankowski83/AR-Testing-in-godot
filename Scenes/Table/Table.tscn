@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://5cg4ik640hr2"]
+
+[ext_resource type="PackedScene" uid="uid://6shfox4fji5h" path="res://Assets/gltf/table_medium_long.gltf" id="1_a00cy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p11cg"]
+size = Vector3(3, 1, 1.5)
+
+[node name="Table" type="Node3D" unique_id=720204479]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1458441846]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=107356917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017089844, 0.50109863, -0.002319336)
+shape = SubResource("BoxShape3D_p11cg")
+
+[node name="table_medium_long2" parent="." unique_id=2103460843 instance=ExtResource("1_a00cy")]

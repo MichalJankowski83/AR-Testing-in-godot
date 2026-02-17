@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bxu3lrntwy2gm"]
+
+[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="1_7688t"]
+[ext_resource type="PackedScene" uid="uid://db4s6b61hd03f" path="res://Assets/gltf/Can_B.gltf" id="2_mtpgk"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8efe8"]
+height = 0.47277832
+radius = 0.14501953
+
+[node name="Can" unique_id=1855813449 instance=ExtResource("1_7688t")]
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24285889, 0)
+shape = SubResource("CylinderShape3D_8efe8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=224719811]
+
+[node name="Can_B2" parent="." index="2" unique_id=1467351810 instance=ExtResource("2_mtpgk")]

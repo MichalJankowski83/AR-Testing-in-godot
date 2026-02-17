@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dchganarq1xvn"]
+
+[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_jmcll"]
+[ext_resource type="Shader" uid="uid://ohqhe8yj83rv" path="res://Scenes/Player/Pixel.gdshader" id="1_t26db"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="2_4wape"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_fk5o5"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_t26db"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="4_4wape"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="4_fk5o5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fk5o5"]
+render_priority = 0
+shader = ExtResource("1_t26db")
+shader_parameter/pixel_size = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_825xp"]
+material = SubResource("ShaderMaterial_fk5o5")
+size = Vector2(2, 2)
+subdivide_width = 5
+subdivide_depth = 5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_t26db"]
+
+[node name="Player" type="XROrigin3D" unique_id=1068197158]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="." unique_id=630823078]
+
+[node name="PixelShader" type="MeshInstance3D" parent="XRCamera3D" unique_id=1535330559]
+visible = false
+mesh = SubResource("QuadMesh_825xp")
+
+[node name="LeftHandController" type="XRController3D" parent="." unique_id=76000226]
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="LeftHandController" unique_id=697799131 instance=ExtResource("1_jmcll")]
+
+[node name="MovementDirect" parent="LeftHandController" unique_id=1309577962 instance=ExtResource("2_4wape")]
+strafe = true
+
+[node name="FunctionPickup" parent="LeftHandController" unique_id=1974021187 instance=ExtResource("3_fk5o5")]
+
+[node name="RightHandController" type="XRController3D" parent="." unique_id=1952360644]
+tracker = &"right_hand"
+
+[node name="RightHand" parent="RightHandController" unique_id=944742196 instance=ExtResource("3_t26db")]
+
+[node name="MovementTurn" parent="RightHandController" unique_id=2139231105 instance=ExtResource("4_4wape")]
+turn_mode = 2
+
+[node name="FunctionPickup" parent="RightHandController" unique_id=417351232 instance=ExtResource("3_fk5o5")]
+
+[node name="PlayerBody" parent="." unique_id=1160262735 instance=ExtResource("4_fk5o5")]
+
+[node name="OpenXRFbPassthroughGeometry" type="OpenXRFbPassthroughGeometry" parent="." unique_id=1590777669]
+mesh = SubResource("CapsuleMesh_t26db")
